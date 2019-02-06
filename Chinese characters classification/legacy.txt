@@ -1,0 +1,163 @@
+class CNNModel(nn.Module):
+    def __init__(self):
+        super(CNNModel, self).__init__()
+        
+        # Convolution 1
+        self.cnn1 = nn.Conv2d(in_channels=1, out_channels=16, kernel_size=5, stride=1, padding=0)
+        self.relu1 = nn.ReLU()
+        
+        # Max pool 1
+        self.maxpool1 = nn.MaxPool2d(kernel_size=2)
+     
+        # Convolution 2
+        self.cnn2 = nn.Conv2d(in_channels=16, out_channels=32, kernel_size=5, stride=1, padding=0)
+        self.relu2 = nn.ReLU()
+        
+        # Max pool 2
+        self.maxpool2 = nn.MaxPool2d(kernel_size=2)
+        
+        # Fully connected 1
+        self.fc1 = nn.Linear(32 * 9 * 9, num_classes) 
+    
+    def forward(self, x):
+        # Convolution 1
+        out = self.cnn1(x)
+        out = self.relu1(out)
+        
+        # Max pool 1
+        out = self.maxpool1(out)
+        
+        # Convolution 2 
+        out = self.cnn2(out)
+        out = self.relu2(out)
+        
+        # Max pool 2 
+        out = self.maxpool2(out)
+        out = out.view(out.size(0), -1)
+
+        # Linear function (readout)
+        out = self.fc1(out)
+        
+        return out
+    
+model = CNNModel()
+
+mdodel = model.to(device)
+
+class CNNModel(nn.Module):
+    def __init__(self):
+        super(CNNModel, self).__init__()
+        self.cnn1 = nn.Conv2d(in_channels=1, out_channels=32, kernel_size=3, stride=1, padding=0)
+        self.relu1 = nn.ReLU()
+        
+        self.cnn2 = nn.Conv2d(in_channels=32, out_channels=32, kernel_size=3, stride=1, padding=0)
+        self.relu2 = nn.ReLU()
+        
+        self.maxpool1 = nn.MaxPool2d(kernel_size=2)
+        
+        self.drop1 = nn.Dropout(0.2)
+        
+        self.cnn3 = nn.Conv2d(in_channels=32, out_channels=64, kernel_size=3, stride=1, padding=1)
+        self.relu3 = nn.ReLU()
+        
+        self.cnn4 = nn.Conv2d(in_channels=64, out_channels=64, kernel_size=3, stride=1, padding=1)
+        self.relu4 = nn.ReLU()
+        
+        self.maxpool2 = nn.MaxPool2d(kernel_size=2)
+        
+        self.drop2 = nn.Dropout(0.25)
+        
+        self.cnn5 = nn.Conv2d(in_channels=64, out_channels=128, kernel_size=3, stride=1, padding=1)
+        self.relu5 = nn.ReLU()
+        
+        self.fc1 = nn.Linear(128 * 7 * 7, 128) 
+        
+        self.bn1 = nn.BatchNorm1d(128)
+        
+        self.drop3 = nn.Dropout(0.25)
+        
+        self.fc2 = nn.Linear(128, num_classes) 
+        
+    def forward(self, x):
+        out = self.cnn1(x)
+        out = self.relu1(out)
+        
+        out = self.cnn2(out)
+        out = self.relu2(out)
+        
+        out = self.maxpool1(out)
+        
+        # Max pool 2 
+        out = self.maxpool2(out)
+        out = out.view(out.size(0), -1)
+
+        # Linear function (readout)
+        out = self.fc1(out)
+        
+        return out
+    
+model = CNNModel()
+
+mdodel = model.to(device)
+
+count = 0
+
+loss_list = []
+iteration_list = []
+accuracy_list = []
+
+model.train()
+
+for epoch in range(num_epochs):
+    for i, (images, labels) in enumerate(train_loader):
+        
+        
+        images, labels = images.to(device), labels.to(device)
+        
+        train = Variable(images.view(-1, 1, h, w))
+        
+        # Clear gradients
+        optimizer.zero_grad()
+        
+        # Forward propagation
+        outputs = model(train)
+        
+        # Calculate softmax and Cross entropy loss
+        loss = error(outputs, labels)
+        
+        # Calculating gradients
+        loss.backward()
+            
+        # Update parameters
+        optimizer.step()
+        count += 1
+        if count % 50 == 0:
+            # Calculate Accuracy         
+            correct = 0
+            total = 0
+            # Iterate through test dataset
+            for (images, labels) in test_loader:
+                images, labels = images.to(device), labels.to(device)
+                
+                test = Variable(images.view(-1, 1, h, w))
+                
+                # Forward propagation
+                outputs = model(test)
+                
+                # Get predictions from the maximum value
+                predicted = torch.max(outputs.data, 1)[1]
+                
+                # Total number of labels
+                total += len(labels)
+                
+                correct += (predicted == labels).sum()
+            
+            accuracy = 100 * correct / float(total)
+            
+            # store loss and iteration
+            loss_list.append(loss.data)
+            iteration_list.append(count)
+            accuracy_list.append(accuracy)
+            if count % 500 == 0:
+                # Print Loss
+                print('Iteration: {}  Loss: {}  Accuracy: {} %'.format(count, loss.item(), accuracy))
