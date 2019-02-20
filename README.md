@@ -5,7 +5,6 @@ This repository contains all follow-up materials, such as .ipynb labs, Kaggle co
 
 Estimates for the project (WIP):
 
-Basic RNN on MIDI (piano or dubstep samples) - a week \
-WaveNet (from the original paper) with dataset extractor - 2 weeks \
-Fast inference for WaveNet (separate paper) - a week \
-The rest of the time will almost certainly be spent on tweaking the model(s).
+Collecting MIDI dataset - 1 week
+Autoencoder + PCA (https://youtu.be/UWxfnNXlVy8) - 4 weeks
+Tuning for continuous notes and other tweaks and improvements - 2 weeks
