@@ -6,5 +6,5 @@ This repository contains all follow-up materials, such as .ipynb labs, Kaggle co
 Estimates for the project (WIP):
 
 Collecting MIDI dataset - 1 week \
-Autoencoder + PCA (https://youtu.be/UWxfnNXlVy8) - 4 weeks \
+Autoencoder + PCA - 4 weeks \
 Tuning for continuous notes and other tweaks and improvements - 2 weeks
