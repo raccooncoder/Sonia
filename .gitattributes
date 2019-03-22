@@ -1,1 +1,2 @@
 *.npy filter=lfs diff=lfs merge=lfs -text
+model_state* filter=lfs diff=lfs merge=lfs -text
