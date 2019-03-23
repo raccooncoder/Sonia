@@ -1,10 +1,9 @@
 # Sonia
-Generation of music using various neural net architectures (WIP).
+Generation of music using autoencoders.
 
 This repository contains all follow-up materials, such as .ipynb labs, Kaggle competitions submission notebooks, and other stuff that gives enough foundation for the project.
 
-Estimates for the project (WIP):
-
-Collecting MIDI dataset - 1 week \
-Autoencoder + PCA - 4 weeks \
-Tuning for continuous notes and other tweaks and improvements - 2 weeks
+Quick note on usage of the project:
+1. python3 inference.py
+2. Enter random seed, "density rate" (float number from 0 to 1, the lower - the denser, 0.25 is optimal for most cases) and output directory.
+3. Generated music (.mid and .wav) would lie in the provided folder.
