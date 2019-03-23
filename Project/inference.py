@@ -5,21 +5,15 @@ from torch.utils.data import DataLoader, Dataset
 import torchvision.models as models
 from torch.autograd import Variable
 import numpy as np
-import matplotlib.pyplot as plt
-import cv2
 from tqdm import tqdm
-from sklearn.model_selection import train_test_split
 import torchvision
 from torchvision import transforms
 import math
-from PIL import Image
-from torchsummary import summary 
 from tqdm import trange 
 
 import midi
 from midi2audio import FluidSynth
 import utils
-import os
 import numpy as np
 import random
 
@@ -113,7 +107,7 @@ class Autoencoder(nn.Module):
         return x
     
 model = Autoencoder().to(device)
-model.load_state_dict(torch.load('States/model_state_canonical', map_location = 'cpu'))
+model.load_state_dict(torch.load('States/model_state_MSE_config', map_location = 'cpu'))
 #summary(model, (16, 96, 96))
 
 model.eval()
