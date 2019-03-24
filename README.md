@@ -8,7 +8,7 @@ The project itself with everything required for its work lies in `Project` folde
 ---
 
 Quick note on usage of the project: \
-Make sure that midi2audio and fluidsynth are installed (`pip install midi2audio && sudo apt install fluidsynth`)
+Make sure that midi2audio and fluidsynth are installed (`pip install midi2audio && sudo apt install fluidsynth`) \
 To download model checkpoints and samples file you will need git-lfs (check out https://git-lfs.github.com)
 
 1. python3 inference.py
