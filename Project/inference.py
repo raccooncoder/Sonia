@@ -17,7 +17,7 @@ import utils
 import numpy as np
 import random
 
-seed = int(input())
+seed = int(input('Enter random seed: '))
 
 torch.manual_seed(seed)
 torch.cuda.manual_seed(seed)
@@ -30,8 +30,9 @@ learning_rate = 0.001
 hidden_size = 120
 step_size = 800
 gamma = 0.5
-thresh = float(input())
-output_dir = input()
+thresh = float(input('Enter density rate(float number from 0 to 1, the lower - the denser, 0.25 is optimal for most cases): '))
+output_dir = input('Enter output directory (with /): ')
+model_path = input('Enter path to the pretrained model: ')
 
 fs = FluidSynth('sf2/8bitsf.SF2')
 
@@ -107,7 +108,7 @@ class Autoencoder(nn.Module):
         return x
     
 model = Autoencoder().to(device)
-model.load_state_dict(torch.load('States/model_state_MSE_config', map_location = 'cpu'))
+model.load_state_dict(torch.load(model_path, map_location = 'cpu'))
 #summary(model, (16, 96, 96))
 
 model.eval()
