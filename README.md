@@ -3,7 +3,7 @@ Generation of music using autoencoders.
 
 This repository contains all follow-up materials, such as .ipynb labs, Kaggle competitions submission notebooks, and other stuff that gives enough foundation for the project.
 
-The project itself with everything required for its work lies in `Project/` folder.
+The project itself with everything required for its work lies in `Project` folder.
 
 ---
 
