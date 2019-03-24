@@ -12,5 +12,5 @@ Make sure that midi2audio and fluidsynth are installed (`pip install midi2audio 
 To download model checkpoints and samples file you will need git-lfs (check out https://git-lfs.github.com)
 
 1. python3 inference.py
-2. Enter random seed, "density rate" (float number from 0 to 1, the lower - the denser, 0.25 is optimal for most cases) and output directory.
+2. Enter random seed, "density rate" (float number from 0 to 1, the lower - the denser, 0.25 is optimal for most cases), output directory and path to the pretrained model (mine are stored in `States` folder).
 3. Generated music (.mid and .wav) would lie in the provided folder.
